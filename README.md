@@ -5,3 +5,11 @@
 **The program itself , Will generate random password's according to the user desired character and length ( Either all digit , all letter's , or a mixture of both ).**
 
 
+# Table of contents:
+- Git:
+    > README : Repository Page , Main file
+    > License : Repository Page , Main File
+
+
+- Algorithms:
+    > project_algorithm : Random Password Generator Project -> attachments ->

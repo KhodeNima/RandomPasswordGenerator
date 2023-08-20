@@ -12,4 +12,4 @@
 
 
 - Algorithms:
-    > project_algorithm : Random Password Generator Project -> attachments ->
+    > project_algorithm : Random Password Generator Project -> attachments 

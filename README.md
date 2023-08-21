@@ -13,12 +13,19 @@
 
 - Algorithms:
     > project_algorithm : Random_Password_Generator_Project -> attachments
+
+    
 - Coding:
     > main_coding : Random_Password_Generator_Project -> coding
+    
     > beta_logic : Random_Password_Generator_Project -> coding
+
+    
 - Coding Database:
     > main_data_file : Random_Password_Generator_Project -> coding -> database
+    > 
     > user_input_control : Random_Password_Generator_Project -> coding -> database
+    
     > menu_control_file : Random_Password_Generator_Project -> coding -> database
-    > real_life_simulations_file : Random_Password_Generator_Project -> coding ->
- database
+    
+    > real_life_simulations_file : Random_Password_Generator_Project -> coding -> database

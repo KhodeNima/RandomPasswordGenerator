@@ -5,7 +5,11 @@ from sys import exit
 import sys
 import os
 
-version = "Beta 1.4.0" # SEMANTIC NUMBERING
+current_version = "Beta 2.10.0" # ! SEMANTIC NUMBERING
+
+color_blue = f"\33[34m"
+color_red = f"\33[31m"
+color_green = f"\33[32m"
 
 
 avaliable_operations = {
@@ -13,11 +17,12 @@ avaliable_operations = {
     2 : "Generate uppercased random password",
     3 : "Generate numeric random password",
     4 : "Generate random password containing number's , uppercased and lowercased letter's",
+    5 : "Quit the App",
 }
 
 
 def clean() -> None:
-    """Cleans the terminal
+    """Clear the terminal
     """
     os.system('cls')
 
@@ -48,7 +53,7 @@ def is_valid_operation(input : int , operation_numbers : dict) -> bool:
     return True
 
 
-def list_elements_to_lower(list) -> list:
+def list_elements_to_lowercase(list) -> list:
     """Return the copy of a list with the string element's converted to lowercase
     """
 
@@ -65,7 +70,7 @@ def list_elements_to_lower(list) -> list:
 
 
 def list_to_string(list : list) -> str:
-    """Converts a list to a string
+    """Converts a list elements to a string
     """
 
     result = ""
@@ -75,13 +80,42 @@ def list_to_string(list : list) -> str:
     return result
 
 
+def dictionary_to_list(dictionary : dict , want_to_return : str = 'items') -> list:
+    """Create a list based by the element's of a dictionary
+
+    Args:
+        dictionary : The assigend dictionary
+
+        what_to_return : You can choose which part's of dictionary to add
+        'items' , 'keys' , 'values'. Default to 'items'.
+
+    """
+
+    if not type(dictionary) is dict:
+        raise ValueError("The provided argumenet type for the parameter ( dictionary ) Is not Valid")
+    if not type(want_to_return) is str:
+        raise ValueError("The provided argumenet type for the parameter ( what_to_return ) Is not Valid")
+    if not want_to_return == 'items' and not want_to_return == 'keys' and not want_to_return == 'values':
+        raise ValueError("The provided argument for the parameter (  what_to_return  ) Is not valid.")
+    
+    if want_to_return.lower() == 'items':
+        new_list = [item for item_pair in dictionary.items() for item in item_pair]
+        return new_list
+    if want_to_return.lower() == 'keys':
+        new_list = [key for key in dictionary.keys()]
+        return new_list
+    if want_to_return.lower() == 'values':
+        new_list = [value for value in dictionary.values()]
+        return new_list
+
+
 @dataclass
-class Variables:
+class OperationalVariables:
     """Keeps all the variables related to the operation
     """
 
     iterable_uppercase_letters = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-    iterable_lowercase_letters = list_elements_to_lower(iterable_uppercase_letters)
+    iterable_lowercase_letters = list_elements_to_lowercase(iterable_uppercase_letters)
     iterable_numbers = list("123456789")
 
     uppercase_letters_length = len(iterable_uppercase_letters)
@@ -109,4 +143,3 @@ class Variables:
 
     generated_random_password_list : list = None
     generated_random_password_string : str = None
-

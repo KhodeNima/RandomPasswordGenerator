@@ -1,3 +1,4 @@
+import json
 from random import randint
 from dataclasses import dataclass
 from time import sleep
@@ -5,7 +6,7 @@ from sys import exit
 import sys
 import os
 
-current_version = "Beta 2.10.0" # ! SEMANTIC NUMBERING
+current_version = "Beta 2.11.0" # ! SEMANTIC NUMBERING
 
 color_blue = f"\33[34m"
 color_red = f"\33[31m"
@@ -86,8 +87,7 @@ def dictionary_to_list(dictionary : dict , want_to_return : str = 'items') -> li
     Args:
         dictionary : The assigend dictionary
 
-        what_to_return : You can choose which part's of dictionary to add
-        'items' , 'keys' , 'values'. Default to 'items'.
+        what_to_return : 'items' , 'keys' , 'values'. Default to 'items'.
 
     """
 
@@ -117,6 +117,7 @@ class OperationalVariables:
     iterable_uppercase_letters = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     iterable_lowercase_letters = list_elements_to_lowercase(iterable_uppercase_letters)
     iterable_numbers = list("123456789")
+    iterable_all_elements = iterable_uppercase_letters + iterable_lowercase_letters + iterable_numbers
 
     uppercase_letters_length = len(iterable_uppercase_letters)
     lowercase_letters_length = len(iterable_lowercase_letters)

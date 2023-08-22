@@ -23,7 +23,7 @@
     
 - Coding Database:
     > main_data_file : Random_Password_Generator_Project -> coding -> database
-    > 
+    
     > user_input_control : Random_Password_Generator_Project -> coding -> database
     
     > menu_control_file : Random_Password_Generator_Project -> coding -> database

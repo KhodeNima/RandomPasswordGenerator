@@ -3,10 +3,9 @@ from data import *
 
 class Menu:
 
-    def __init__(self, operations_numbers : list, operations_names : list , current_password : str = None):
+    def __init__(self, operations_numbers : list, operations_names : list):
         self.operations_numbers = operations_numbers
         self.operations_names = operations_names
-        self.current_password = current_password
 
         if not operations_names:
             raise ValueError("The argument for the parameter ( operations_names ) Is not provided.")
@@ -27,6 +26,15 @@ class Menu:
         while exponential_index < operations_length:     
             print(f'{color_red}{self.operations_numbers[exponential_index]}{color_blue} : {color_green}{self.operations_names[exponential_index]}{color_blue}')
             exponential_index += 1
+    
+    def evaluate_new_password(self , current_password : str):
+        """Set the new entry as the current menu password
+        """
+
+        if not current_password is str:
+            raise ValueError(f"Invalid argument type passed for the parameter ( current_password )")
+
+        self.current_password = current_password
 
     def show_current_password(self):
         """Show the current generated password

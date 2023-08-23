@@ -8,17 +8,18 @@ class Menu:
         self.operations_names = operations_names
 
         if not operations_names:
-            raise ValueError("The argument for the parameter ( operations_names ) Is not provided.")
+            raise ValueError(missing_argument_error_message.format('operations_names'))
         if not operations_numbers:
-            raise ValueError("The argument for the parameter ( operations_names ) Is not provided. ")          
+            raise ValueError(missing_argument_error_message.format('operations_numbers'))          
         if not type(operations_numbers) is list:
-            raise ValueError("The Parameter type for the argument ( argument_numbers ) Is not valid.")
+            raise ValueError(value_type_error_message.format('operations_numbers'))
         if not type(operations_names) is list:
-            raise ValueError("The parameter type for the argument ( operations_names ) Is not valid.")         
+            raise ValueError(value_type_error_message.format('operations_names'))         
         
     def show_operations_list(self) -> str:
         """Show a list of a all avaliable operation's Refrenced by their number's
         """
+
 
         exponential_index = 0
         operations_length = len(self.operations_names)
@@ -31,8 +32,8 @@ class Menu:
         """Set the new entry as the current menu password
         """
 
-        if not current_password is str:
-            raise ValueError(f"Invalid argument type passed for the parameter ( current_password )")
+        if not type(current_password) is str:
+            raise ValueError(value_type_error_message)
 
         self.current_password = current_password
 

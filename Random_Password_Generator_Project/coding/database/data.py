@@ -1,16 +1,19 @@
-import json
-from random import randint
-from dataclasses import dataclass
-from time import sleep
-from sys import exit
+from random import (randint)
+from dataclasses import (dataclass)
+from time import (sleep)
+from sys import (exit)
+import inspect
 import sys
 import os
 
-current_version = "Beta 2.11.0" # ! SEMANTIC NUMBERING
+current_version = "Beta 2.17.0" # ! SEMANTIC NUMBERING
 
 color_blue = f"\33[34m"
 color_red = f"\33[31m"
 color_green = f"\33[32m"
+
+value_type_error_message = "The argument type for the parameter ( {} ) Is not valid."
+missing_argument_error_message = "No argument provided for the parameter ( {} )"
 
 
 avaliable_operations = {
@@ -38,17 +41,27 @@ def is_valid_length(length : int) -> bool:
     """Checks if a integer is considered a valid length for the operation
     """
 
-    if not length > 20:
+    try:
+        length = int(length)
+    except:
+        return False
+
+    if not length < 20:
         return False
     
     return True
 
 
-def is_valid_operation(input : int , operation_numbers : dict) -> bool:
-    """Checks if a integer exist in the operation's numbering
+def is_valid_operation(input : int) -> bool:
+    """Checks If a integer Is a valid operation number
     """
 
-    if not input in operation_numbers.keys():
+    try:
+        input = int(input)
+    except:
+        return False
+
+    if not input in avaliable_operations.keys():
         return False
     
     return True
@@ -91,12 +104,14 @@ def dictionary_to_list(dictionary : dict , want_to_return : str = 'items') -> li
 
     """
 
+    new_list = []
+
     if not type(dictionary) is dict:
         raise ValueError("The provided argumenet type for the parameter ( dictionary ) Is not Valid")
     if not type(want_to_return) is str:
         raise ValueError("The provided argumenet type for the parameter ( what_to_return ) Is not Valid")
     if not want_to_return == 'items' and not want_to_return == 'keys' and not want_to_return == 'values':
-        raise ValueError("The provided argument for the parameter (  what_to_return  ) Is not valid.")
+        raise ValueError()
     
     if want_to_return.lower() == 'items':
         new_list = [item for item_pair in dictionary.items() for item in item_pair]
@@ -107,6 +122,14 @@ def dictionary_to_list(dictionary : dict , want_to_return : str = 'items') -> li
     if want_to_return.lower() == 'values':
         new_list = [value for value in dictionary.values()]
         return new_list
+
+
+def is_yes_or_no(string : str ) -> bool:
+    
+    if not string.lower().strip() == 'yes' or string.lower().strip() == 'no':
+        return False
+    
+    return True
 
 
 @dataclass
@@ -130,9 +153,11 @@ class OperationalVariables:
 
     operation_is_invalid : bool = False
     length_is_invalid : bool = False
+    confirmation_is_invalid : bool = False
 
     operation_is_valid : bool = False
     length_is_valid : bool = False
+    confirmation_is_valid : bool = False
 
     decided_to_quit : bool = False
     confirmed_to_quit : bool = False
@@ -144,3 +169,53 @@ class OperationalVariables:
 
     generated_random_password_list : list = None
     generated_random_password_string : str = None
+
+
+def get_variable_names(scope : object or function) -> list[str]:
+    """Return All the variables name in the scope 
+
+    list : variable_name
+    """
+
+    if not callable(scope):
+        raise ValueError("The passed argument for the parameter ( scope ) Is not callable")
+        
+    if callable(scope):
+        variables = inspect.getmembers(scope)
+
+        return variables
+
+print(get_variable_names(OperationalVariables))
+
+
+def get_variables_values(scope : object or function) -> list[str]:
+    """Return All the variables value in the scope
+
+    Returns:
+        list[str]: variable_values
+    """
+
+    variables = scope.inspect
+
+    values = [
+        value for value in variables.values()
+    ]
+
+    print(values)
+
+
+def reset_variables(dataclass : dataclass) -> list[str] :
+    """Give the value None to all the variables in the dataclass
+    """
+    
+    variables_dictionary = locals(dataclass)
+    
+    if not inspect.isclass(dataclass):
+        raise ValueError(value_type_error_message.format('dataclass')) 
+
+    variables = [variable for variable in dir(dataclass) if not variable.startswith("__") and not variable.endswith("__")]
+    
+    for variable in variables:
+        ...
+    return variables_dictionary
+    

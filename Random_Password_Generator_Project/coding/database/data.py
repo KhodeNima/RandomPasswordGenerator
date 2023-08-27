@@ -2,11 +2,10 @@ from random import (randint)
 from dataclasses import (dataclass)
 from time import (sleep)
 from sys import (exit)
-import inspect
 import sys
 import os
 
-current_version = "Beta 2.17.0" # ! SEMANTIC NUMBERING
+current_version = "Beta 2.22.1" 
 
 color_blue = f"\33[34m"
 color_red = f"\33[31m"
@@ -169,53 +168,3 @@ class OperationalVariables:
 
     generated_random_password_list : list = None
     generated_random_password_string : str = None
-
-
-def get_variable_names(scope : object or function) -> list[str]:
-    """Return All the variables name in the scope 
-
-    list : variable_name
-    """
-
-    if not callable(scope):
-        raise ValueError("The passed argument for the parameter ( scope ) Is not callable")
-        
-    if callable(scope):
-        variables = inspect.getmembers(scope)
-
-        return variables
-
-print(get_variable_names(OperationalVariables))
-
-
-def get_variables_values(scope : object or function) -> list[str]:
-    """Return All the variables value in the scope
-
-    Returns:
-        list[str]: variable_values
-    """
-
-    variables = scope.inspect
-
-    values = [
-        value for value in variables.values()
-    ]
-
-    print(values)
-
-
-def reset_variables(dataclass : dataclass) -> list[str] :
-    """Give the value None to all the variables in the dataclass
-    """
-    
-    variables_dictionary = locals(dataclass)
-    
-    if not inspect.isclass(dataclass):
-        raise ValueError(value_type_error_message.format('dataclass')) 
-
-    variables = [variable for variable in dir(dataclass) if not variable.startswith("__") and not variable.endswith("__")]
-    
-    for variable in variables:
-        ...
-    return variables_dictionary
-    

@@ -88,11 +88,9 @@ class InputAndOutputControl:
         
         if OperationalVariables.input_confirm_to_quit == 'yes'.lower().strip():
             OperationalVariables.confirmed_to_quit = True
-            OperationalVariables.confirmed_to_quit = False
             return None
         
         if OperationalVariables.input_confirm_to_quit == 'no':
-            OperationalVariables.confirmed_to_quit = False
             OperationalVariables.confirmed_to_quit = False
             return None
             

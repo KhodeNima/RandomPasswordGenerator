@@ -2,10 +2,11 @@ from random import (randint)
 from dataclasses import (dataclass)
 from time import (sleep)
 from sys import (exit)
+import inspect
 import sys
 import os
 
-current_version = "Beta 2.22.1" 
+current_version = "Beta 2.23.1" 
 
 color_blue = f"\33[34m"
 color_red = f"\33[31m"
@@ -168,3 +169,25 @@ class OperationalVariables:
 
     generated_random_password_list : list = None
     generated_random_password_string : str = None
+
+
+def reset_all_variables(scope : object) -> None:
+    """Give the value None to all the variables in the scope
+
+    Args:
+        scope (object): Only accept a class.
+
+    Raises:
+        ValueError: If not the provided Scope is a class.
+    """
+
+    if not inspect.isclass(scope):
+        raise ValueError(value_type_error_message ).format('scope')
+    
+    variables = [
+        variable for variable in dir(scope) if not variable.startswith('__') and not variable.endswith('__')
+    ]
+
+    for variable in variables:
+        scope.__setattr__(variable , None)
+        

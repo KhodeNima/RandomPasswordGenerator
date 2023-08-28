@@ -1,6 +1,5 @@
 from data import *
 
-
 def loading_screen() -> None:
     """Simulates a loding screen operation
     """
@@ -19,8 +18,6 @@ def loading_screen() -> None:
 
         print(f"{color_blue}{bytes_downloaded} : {color_green}{string_loading_logo}{color_blue}")
         bytes_downloaded += 1
-
-loading_screen()
 
 
 def welcome_screen() -> None:

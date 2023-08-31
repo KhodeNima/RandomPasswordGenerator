@@ -2,8 +2,7 @@ from .data import *
 
 
 def loading_screen() -> None:
-    """Simulates a loding screen operation
-    """
+    """Simulates a loding screen operation"""
 
     loading_character = chr(9609)
     loading_logo = list(loading_character)
@@ -17,22 +16,24 @@ def loading_screen() -> None:
         for byte in loading_logo:
             string_loading_logo = list_to_string(loading_logo)
 
-        print(f"{color_blue}{bytes_downloaded} : {color_green}{string_loading_logo}{color_blue}")
+        print(
+            f"{color_blue}{bytes_downloaded} : {color_green}{string_loading_logo}{color_blue}"
+        )
         bytes_downloaded += 1
 
 
 def welcome_screen() -> None:
-    """Simulates a welcome screen operation
-    """
+    """Simulates a welcome screen operation"""
 
     clean()
-    print(f"{color_blue}Welcome to KhodeNima's Random password generator Version : {color_green}{current_version}{color_blue} .")
+    print(
+        f"{color_blue}Welcome to KhodeNima's Random password generator Version : {color_green}{current_version}{color_blue} ."
+    )
     sleep(5)
 
 
 def goodbye_screen() -> None:
-    """Simulates a goodbye screen operation
-    """
+    """Simulates a goodbye screen operation"""
 
     clean()
     print(f"{color_blue} Thanks for using KhodeNima's Random password generator . \n")

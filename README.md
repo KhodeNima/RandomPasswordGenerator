@@ -4,6 +4,9 @@
 # What does it actually do and what are the features?
 **The program itself , Will generate random password's according to the user desired character and length ( Either all digit , all lowercase letters, all uppercase letters ,  or a mixture of these three ).**
 
+# What formatting rule's does this repository Follows?
+**Black**
+
 
 # Table of contents:
 - Git:

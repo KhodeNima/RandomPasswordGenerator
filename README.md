@@ -5,7 +5,7 @@
 **The program itself , Will generate random password's according to the user desired character and length ( Either all digit , all lowercase letters, all uppercase letters ,  or a mixture of these three ).**
 
 # What formatting rule's does this repository Follow?
-**Black**
+**Black** , **Pylint**
 
 
 # Table of contents:

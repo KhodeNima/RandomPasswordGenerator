@@ -1,0 +1,4 @@
+- name: Python Black
+  uses: cytopia/docker-black@0.11
+  with:
+    path: ..

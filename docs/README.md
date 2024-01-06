@@ -32,3 +32,8 @@
     > menu_control_file : Random_Password_Generator_Project -> coding -> database
     
     > real_life_simulations_file : Random_Password_Generator_Project -> coding -> database
+
+
+# Note
+> [!NOTE]
+> This repository is archived until further development.
